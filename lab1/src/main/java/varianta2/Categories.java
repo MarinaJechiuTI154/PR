@@ -25,7 +25,7 @@ public class Categories {
         this.id = id;
         this.name = name;
         this.category_id = category_id;
-    }
+     }
 
     public Categories(String string, ArrayList<String> ordine) {
         int lastPosition = 0;
