@@ -18,20 +18,28 @@ public class JavaClient {
 
         while (true) {
             try {
-                 client = new Socket("192.168.55.188", 1234);
+                 client = new Socket("192.168.1.2", 1234);
                 OutputStream clientOut = client.getOutputStream();
                 PrintWriter pw = new PrintWriter(clientOut, true);
                 InputStream clientIn = client.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(clientIn));
                 BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in));
-
-                System.out.println("Enter your name: ");
+                System.out.println();
+                System.out.print(">> ");
                 String msg = consoleIn.readLine();
 
                 //send the message read from console to the server
                 pw.println(msg);
-
-                System.out.println("Message returned from the server: " + br.readLine());
+                System.out.print("<< ");
+                String text = br.readLine();
+                for (int i = 0; i < text.length(); i++) {
+                    if(text.charAt(i) == '\t'){
+                        System.out.println();
+                    }
+                    else {
+                        System.out.print(text.charAt(i));
+                    }
+                }
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             } catch (IOException e) {
